@@ -1,17 +1,17 @@
 ---
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Timeline', href: '/timeline' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'RSVP', href: '/rsvp' },
-  { name: 'Guestbook', href: '/guestbook' },
+  { name: 'Home', href: '#home' },
+  { name: 'Timeline', href: '#timeline' },
+  { name: 'Gallery', href: '#gallery' },
+  { name: 'RSVP', href: '#rsvp' },
+  { name: 'Guestbook', href: '#guestbook' },
 ];
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b-2 border-wedding-matcha-green/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      <a href="/" class="text-2xl font-brush text-wedding-matcha-green hover:text-wedding-pink-clouds transition-colors">
+      <a href="#home" class="text-2xl font-brush text-wedding-matcha-green hover:text-wedding-pink-clouds transition-colors scroll-smooth">
         Nijao Wedding
       </a>
 
@@ -41,7 +41,8 @@ const navItems = [
         {navItems.map((item) => (
           <a
             href={item.href}
-            class="text-gray-700 hover:text-wedding-matcha-green font-medium transition-colors"
+            class="text-gray-700 hover:text-wedding-matcha-green font-medium transition-colors scroll-smooth"
+            data-section={item.href.replace('#', '')}
           >
             {item.name}
           </a>
@@ -57,7 +58,8 @@ const navItems = [
       {navItems.map((item) => (
         <a
           href={item.href}
-          class="block px-3 py-2 rounded-md text-wedding-light-espresso hover:bg-wedding-oatmilk transition-colors"
+          class="block px-3 py-2 rounded-md text-wedding-light-espresso hover:bg-wedding-oatmilk transition-colors scroll-smooth"
+          data-section={item.href.replace('#', '')}
         >
           {item.name}
         </a>
@@ -76,5 +78,57 @@ const navItems = [
       mobileMenu.classList.toggle('hidden');
     });
   }
+
+  // Smooth scroll with offset for fixed navbar
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const offset = 80; // Height of fixed navbar
+        const targetPosition = targetElement.offsetTop - offset;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+
+        // Close mobile menu if open
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+        }
+      }
+    });
+  });
+
+  // Highlight active nav item on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+  function highlightActiveSection() {
+    const scrollY = window.pageYOffset;
+
+    sections.forEach(section => {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 100;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('text-wedding-matcha-green', 'font-bold');
+          link.classList.add('text-gray-700');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.remove('text-gray-700');
+            link.classList.add('text-wedding-matcha-green', 'font-bold');
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', highlightActiveSection);
 </script>
 

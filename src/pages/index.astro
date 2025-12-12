@@ -1,14 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navigation from '../components/Navigation.astro';
+import StepperNavigation from '../components/StepperNavigation.svelte';
+import Gallery from '../components/Gallery/Gallery.svelte';
+import RSVPForm from '../components/RSVP/RSVPForm.svelte';
+import Guestbook from '../components/Guestbook/Guestbook.svelte';
 ---
 
 <BaseLayout title="Nijao Wedding - Join Us for Our Special Day">
-  <Navigation />
+  <StepperNavigation client:load />
 
-  <main class="pt-16">
+  <main>
     <!-- Hero Section -->
-    <section class="relative min-h-0 md:min-h-[70vh] flex items-center justify-center bg-gradient-to-b from-wedding-pink-clouds/40 via-wedding-matcha-green/30 to-white overflow-hidden">
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-wedding-pink-clouds/40 via-wedding-matcha-green/30 to-white overflow-hidden">
       <!-- Decorative floating elements -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-20 h-20 bg-wedding-pink-clouds/15 rounded-full blur-lg animate-float"></div>
@@ -27,14 +30,14 @@ import Navigation from '../components/Navigation.astro';
         </p>
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-up animate-delay-600">
           <a
-            href="/rsvp"
-            class="bg-wedding-pink-clouds text-white px-8 py-3 rounded-full font-semibold hover:bg-wedding-pink-clouds/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-glow transform"
+            href="#rsvp"
+            class="bg-wedding-pink-clouds text-white px-8 py-3 rounded-full font-semibold hover:bg-wedding-pink-clouds/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-glow transform scroll-smooth"
           >
             RSVP Now
           </a>
           <a
-            href="/timeline"
-            class="bg-wedding-matcha-green text-white border-2 border-wedding-matcha-green px-8 py-3 rounded-full font-semibold hover:bg-wedding-matcha-green/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-glow transform"
+            href="#timeline"
+            class="bg-wedding-matcha-green text-white border-2 border-wedding-matcha-green px-8 py-3 rounded-full font-semibold hover:bg-wedding-matcha-green/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 btn-glow transform scroll-smooth"
           >
             View Timeline
           </a>
@@ -83,6 +86,121 @@ import Navigation from '../components/Navigation.astro';
             <p class="text-gray-700">Formal Attire</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 bg-wedding-matcha-green/5">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl sm:text-5xl font-brush text-center text-wedding-matcha-green mb-12">
+          Our Wedding Day Timeline
+        </h2>
+
+        <div class="space-y-8">
+          <!-- Timeline Item 1 - Matcha Green -->
+          <div class="relative pl-8 border-l-4 border-wedding-matcha-green">
+            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-matcha-green rounded-full"></div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-2xl font-handwriting font-bold text-wedding-matcha-green mb-2">
+                4:00 PM - Ceremony
+              </h3>
+              <p class="text-gray-700">
+                Join us for our wedding ceremony. Please arrive 15 minutes early.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 - Pink Clouds -->
+          <div class="relative pl-8 border-l-4 border-wedding-pink-clouds">
+            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-pink-clouds rounded-full"></div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-2xl font-handwriting font-bold text-wedding-pink-clouds mb-2">
+                5:00 PM - Cocktail Hour
+              </h3>
+              <p class="text-gray-700">
+                Enjoy drinks and hors d'oeuvres while we take photos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 - Matcha Green -->
+          <div class="relative pl-8 border-l-4 border-wedding-matcha-green">
+            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-matcha-green rounded-full"></div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-2xl font-handwriting font-bold text-wedding-matcha-green mb-2">
+                6:00 PM - Reception
+              </h3>
+              <p class="text-gray-700">
+                Dinner, dancing, and celebration!
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 - Pink Clouds -->
+          <div class="relative pl-8 border-l-4 border-wedding-pink-clouds">
+            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-pink-clouds rounded-full"></div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-2xl font-handwriting font-bold text-wedding-pink-clouds mb-2">
+                9:00 PM - After Party
+              </h3>
+              <p class="text-gray-700">
+                Let's dance the night away! The party continues with music and celebration.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 5 - Matcha Green -->
+          <div class="relative pl-8 border-l-4 border-wedding-matcha-green">
+            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-matcha-green rounded-full"></div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-2xl font-handwriting font-bold text-wedding-matcha-green mb-2">
+                10:00 PM - Dismissal
+              </h3>
+              <p class="text-gray-700">
+                Thank you for celebrating with us! Safe travels home.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gradient-to-b from-wedding-pink-clouds/10 via-wedding-matcha-green/10 to-transparent">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl sm:text-5xl font-brush text-center text-wedding-matcha-green mb-12">
+          Our Photo Gallery
+        </h2>
+
+        <Gallery client:load />
+      </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-20 bg-wedding-matcha-green/5">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl sm:text-5xl font-brush text-center text-wedding-matcha-green mb-4">
+          RSVP
+        </h2>
+        <p class="text-center text-gray-700 mb-12 text-lg">
+          We'd love to celebrate with you! Please let us know if you'll be joining us.
+        </p>
+
+        <RSVPForm client:load />
+      </div>
+    </section>
+
+    <!-- Guestbook Section -->
+    <section id="guestbook" class="py-20 bg-gradient-to-b from-wedding-pink-clouds/10 via-wedding-matcha-green/10 to-transparent">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl sm:text-5xl font-brush text-center text-wedding-matcha-green mb-4">
+          Guestbook
+        </h2>
+        <p class="text-center text-gray-700 mb-12 text-lg">
+          Share your well wishes and memories with us!
+        </p>
+
+        <Guestbook client:load />
       </div>
     </section>
   </main>
