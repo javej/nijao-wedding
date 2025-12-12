@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Gallery from '../components/Gallery/Gallery.svelte';
+---
+
+<BaseLayout title="Gallery - Nijao Wedding" description="Our wedding photos">
+  <Navigation />
+
+  <main class="pt-16 min-h-screen bg-wedding-matcha-green/5">
+    <section class="py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl sm:text-5xl font-brush text-center text-wedding-matcha-green mb-12">
+          Our Photo Gallery
+        </h1>
+
+        <Gallery client:load />
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-wedding-matcha-green text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm">Made with ❤️ for our special day</p>
+    </div>
+  </footer>
+</BaseLayout>
+

@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import RSVPForm from '../components/RSVP/RSVPForm.svelte';
+---
+
+<BaseLayout title="RSVP - Nijao Wedding" description="RSVP to our wedding">
+  <Navigation />
+
+  <main class="pt-16 min-h-screen bg-wedding-matcha-green/5">
+    <section class="py-20">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl sm:text-5xl font-brush text-center text-wedding-matcha-green mb-4">
+          RSVP
+        </h1>
+        <p class="text-center text-gray-700 mb-12 text-lg">
+          We'd love to celebrate with you! Please let us know if you'll be joining us.
+        </p>
+
+        <RSVPForm client:load />
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-wedding-matcha-green text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm">Made with ❤️ for our special day</p>
+    </div>
+  </footer>
+</BaseLayout>
+
