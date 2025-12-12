@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
 
   const sections = [
-    { id: 'home', name: 'Home', icon: '🏠' },
+    { id: 'home', name: 'Details', icon: '📋' },
     { id: 'timeline', name: 'Timeline', icon: '⏰' },
     { id: 'gallery', name: 'Gallery', icon: '📸' },
     { id: 'rsvp', name: 'RSVP', icon: '✉️' },

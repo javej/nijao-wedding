@@ -1,22 +1,17 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { fade, fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
 
   interface FormData {
     name: string;
     email: string;
-    guests: number;
-    dietaryRestrictions: string;
-    songRequests: string;
+    attending: 'yes' | 'no' | '';
   }
 
   let formData: FormData = {
     name: '',
     email: '',
-    guests: 1,
-    dietaryRestrictions: '',
-    songRequests: '',
+    attending: '',
   };
 
   let isSubmitting = false;
@@ -47,9 +42,7 @@
       formData = {
         name: '',
         email: '',
-        guests: 1,
-        dietaryRestrictions: '',
-        songRequests: '',
+        attending: '',
       };
     } catch (error) {
       submitStatus = 'error';
@@ -109,58 +102,35 @@
         />
       </div>
 
-      <!-- Number of Guests -->
-      <div>
-        <label
-          for="guests"
-          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
-        >
-          Number of Guests *
-        </label>
-        <input
-          type="number"
-          id="guests"
-          bind:value={formData.guests}
-          min="1"
-          max="10"
-          required
-          class="w-full px-4 py-3 border border-wedding-dark-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-dark-matcha-green focus:border-transparent outline-none"
-        />
-      </div>
+      <!-- Will you be attending? -->
+      <fieldset>
+        <legend class="block text-sm font-medium text-wedding-dark-matcha-green mb-3">
+          Will you be attending? *
+        </legend>
+        <div class="flex gap-6">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="radio"
+              bind:group={formData.attending}
+              value="yes"
+              required
+              class="w-5 h-5 text-wedding-raspberry focus:ring-wedding-raspberry border-wedding-dark-matcha-green"
+            />
+            <span class="ml-2 text-gray-700">Yes, I'll be there!</span>
+          </label>
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="radio"
+              bind:group={formData.attending}
+              value="no"
+              required
+              class="w-5 h-5 text-wedding-raspberry focus:ring-wedding-raspberry border-wedding-dark-matcha-green"
+            />
+            <span class="ml-2 text-gray-700">Sorry, can't make it</span>
+          </label>
+        </div>
+      </fieldset>
 
-      <!-- Dietary Restrictions -->
-      <div>
-        <label
-          for="dietary"
-          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
-        >
-          Dietary Restrictions or Allergies
-        </label>
-        <textarea
-          id="dietary"
-          bind:value={formData.dietaryRestrictions}
-          rows="3"
-          class="w-full px-4 py-3 border border-wedding-secondary rounded-lg focus:ring-2 focus:ring-wedding-primary focus:border-transparent outline-none resize-none"
-          placeholder="Please let us know about any dietary restrictions or allergies..."
-        ></textarea>
-      </div>
-
-      <!-- Song Requests -->
-      <div>
-        <label
-          for="songs"
-          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
-        >
-          Song Requests
-        </label>
-        <textarea
-          id="songs"
-          bind:value={formData.songRequests}
-          rows="3"
-          class="w-full px-4 py-3 border border-wedding-secondary rounded-lg focus:ring-2 focus:ring-wedding-primary focus:border-transparent outline-none resize-none"
-          placeholder="Any songs you'd like to hear at the reception?"
-        ></textarea>
-      </div>
 
       <!-- Error Message -->
       {#if submitStatus === 'error'}
