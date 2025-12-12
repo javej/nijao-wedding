@@ -86,7 +86,7 @@
     transition:fade={{ duration: 200 }}
   >
     <button
-      class="absolute top-4 right-4 text-white hover:text-wedding-matcha-green transition-colors text-2xl z-10"
+      class="absolute top-4 right-4 text-white hover:text-wedding-dark-matcha-green transition-colors text-2xl z-10"
       on:click={closeLightbox}
       aria-label="Close lightbox"
       transition:fly={{ y: -10, duration: 300, delay: 100 }}
@@ -95,7 +95,7 @@
     </button>
 
     <button
-      class="absolute left-4 text-white hover:text-wedding-matcha-green transition-colors text-4xl z-10"
+      class="absolute left-4 text-white hover:text-wedding-dark-matcha-green transition-colors text-4xl z-10"
       on:click|stopPropagation={previousImage}
       aria-label="Previous image"
       transition:fly={{ x: -20, duration: 300, delay: 100 }}
@@ -104,7 +104,7 @@
     </button>
 
     <button
-      class="absolute right-4 text-white hover:text-wedding-matcha-green transition-colors text-4xl z-10"
+      class="absolute right-4 text-white hover:text-wedding-dark-matcha-green transition-colors text-4xl z-10"
       on:click|stopPropagation={nextImage}
       aria-label="Next image"
       transition:fly={{ x: 20, duration: 300, delay: 100 }}

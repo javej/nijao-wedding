@@ -70,8 +70,8 @@
 
 <div class="space-y-8" in:fade={{ duration: 300 }}>
   <!-- Guestbook Form -->
-  <div class="bg-white rounded-lg shadow-lg p-6 sm:p-8" transition:fly={{ y: 20, duration: 400, easing: quintOut }}>
-    <h2 class="text-2xl font-handwriting font-bold text-wedding-matcha-green mb-6">
+  <div class="bg-wedding-oatmilk rounded-lg shadow-lg p-6 sm:p-8" transition:fly={{ y: 20, duration: 400, easing: quintOut }}>
+    <h2 class="text-2xl font-handwriting font-bold text-wedding-dark-matcha-green mb-6">
       Leave a Message
     </h2>
 
@@ -91,7 +91,7 @@
       <div>
         <label
           for="guestbook-name"
-          class="block text-sm font-medium text-wedding-matcha-green mb-2"
+          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
         >
           Your Name *
         </label>
@@ -100,7 +100,7 @@
           id="guestbook-name"
           bind:value={newEntry.name}
           required
-          class="w-full px-4 py-3 border border-wedding-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-matcha-green focus:border-transparent outline-none"
+          class="w-full px-4 py-3 border border-wedding-dark-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-dark-matcha-green focus:border-transparent outline-none"
           placeholder="Enter your name"
         />
       </div>
@@ -108,7 +108,7 @@
       <div>
         <label
           for="guestbook-message"
-          class="block text-sm font-medium text-wedding-matcha-green mb-2"
+          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
         >
           Your Message *
         </label>
@@ -125,7 +125,7 @@
       <button
         type="submit"
         disabled={isSubmitting}
-        class="w-full bg-wedding-pink-clouds text-white py-3 rounded-lg font-semibold hover:bg-wedding-pink-clouds transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        class="w-full bg-wedding-raspberry text-white py-3 rounded-lg font-semibold hover:bg-wedding-raspberry/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
       >
         {isSubmitting ? 'Submitting...' : 'Submit Message'}
       </button>
@@ -134,19 +134,19 @@
 
   <!-- Guestbook Entries -->
   <div class="space-y-4">
-    <h2 class="text-2xl font-handwriting font-bold text-wedding-matcha-green mb-6">
+    <h2 class="text-2xl font-handwriting font-bold text-wedding-dark-matcha-green mb-6">
       Messages from Our Guests
     </h2>
 
     {#if entries.length === 0}
-      <div class="bg-white rounded-lg shadow-md p-8 text-center text-gray-700">
+      <div class="bg-wedding-oatmilk rounded-lg shadow-md p-8 text-center text-gray-700">
         <p>No messages yet. Be the first to leave a message!</p>
       </div>
     {:else}
       {#each entries as entry (entry.id)}
-        <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-wedding-matcha-green" transition:fly={{ y: 20, duration: 400, easing: quintOut }}>
+        <div class="bg-wedding-oatmilk rounded-lg shadow-md p-6 border-l-4 border-wedding-dark-matcha-green" transition:fly={{ y: 20, duration: 400, easing: quintOut }}>
           <div class="flex justify-between items-start mb-3">
-            <h3 class="text-lg font-semibold text-wedding-matcha-green">
+            <h3 class="text-lg font-semibold text-wedding-dark-matcha-green">
               {entry.name}
             </h3>
             <span class="text-sm text-gray-600">

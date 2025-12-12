@@ -8,10 +8,10 @@ const navItems = [
 ];
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b-2 border-wedding-matcha-green/20">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-wedding-oatmilk/95 backdrop-blur-sm shadow-sm border-b-2 border-wedding-dark-matcha-green/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      <a href="#home" class="text-2xl font-brush text-wedding-matcha-green hover:text-wedding-pink-clouds transition-colors scroll-smooth">
+      <a href="#home" class="text-2xl font-brush text-wedding-dark-matcha-green hover:text-wedding-raspberry transition-colors scroll-smooth">
         Nijao Wedding
       </a>
 
@@ -41,7 +41,7 @@ const navItems = [
         {navItems.map((item) => (
           <a
             href={item.href}
-            class="text-gray-700 hover:text-wedding-matcha-green font-medium transition-colors scroll-smooth"
+            class="text-gray-700 hover:text-wedding-dark-matcha-green font-medium transition-colors scroll-smooth"
             data-section={item.href.replace('#', '')}
           >
             {item.name}
@@ -118,11 +118,11 @@ const navItems = [
 
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
         navLinks.forEach(link => {
-          link.classList.remove('text-wedding-matcha-green', 'font-bold');
+          link.classList.remove('text-wedding-dark-matcha-green', 'font-bold');
           link.classList.add('text-gray-700');
           if (link.getAttribute('href') === `#${sectionId}`) {
             link.classList.remove('text-gray-700');
-            link.classList.add('text-wedding-matcha-green', 'font-bold');
+            link.classList.add('text-wedding-dark-matcha-green', 'font-bold');
           }
         });
       }

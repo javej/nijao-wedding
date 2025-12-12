@@ -60,11 +60,11 @@
   }
 </script>
 
-<div class="bg-white rounded-lg shadow-lg p-6 sm:p-8" in:fade={{ duration: 300 }}>
+<div class="bg-wedding-oatmilk rounded-lg shadow-lg p-6 sm:p-8" in:fade={{ duration: 300 }}>
   {#if submitStatus === 'success'}
     <div class="text-center py-8" transition:fly={{ y: 20, duration: 400, easing: quintOut }}>
       <div class="text-6xl mb-4">🎉</div>
-      <h2 class="text-2xl font-handwriting font-bold text-wedding-matcha-green mb-2">
+      <h2 class="text-2xl font-handwriting font-bold text-wedding-dark-matcha-green mb-2">
         Thank You!
       </h2>
       <p class="text-gray-700">
@@ -77,7 +77,7 @@
       <div>
         <label
           for="name"
-          class="block text-sm font-medium text-wedding-matcha-green mb-2"
+          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
         >
           Full Name *
         </label>
@@ -86,7 +86,7 @@
           id="name"
           bind:value={formData.name}
           required
-          class="w-full px-4 py-3 border border-wedding-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-matcha-green focus:border-transparent outline-none"
+          class="w-full px-4 py-3 border border-wedding-dark-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-dark-matcha-green focus:border-transparent outline-none"
           placeholder="Enter your full name"
         />
       </div>
@@ -95,7 +95,7 @@
       <div>
         <label
           for="email"
-          class="block text-sm font-medium text-wedding-matcha-green mb-2"
+          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
         >
           Email Address *
         </label>
@@ -104,7 +104,7 @@
           id="email"
           bind:value={formData.email}
           required
-          class="w-full px-4 py-3 border border-wedding-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-matcha-green focus:border-transparent outline-none"
+          class="w-full px-4 py-3 border border-wedding-dark-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-dark-matcha-green focus:border-transparent outline-none"
           placeholder="your.email@example.com"
         />
       </div>
@@ -113,7 +113,7 @@
       <div>
         <label
           for="guests"
-          class="block text-sm font-medium text-wedding-matcha-green mb-2"
+          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
         >
           Number of Guests *
         </label>
@@ -124,7 +124,7 @@
           min="1"
           max="10"
           required
-          class="w-full px-4 py-3 border border-wedding-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-matcha-green focus:border-transparent outline-none"
+          class="w-full px-4 py-3 border border-wedding-dark-matcha-green rounded-lg focus:ring-2 focus:ring-wedding-dark-matcha-green focus:border-transparent outline-none"
         />
       </div>
 
@@ -132,7 +132,7 @@
       <div>
         <label
           for="dietary"
-          class="block text-sm font-medium text-wedding-matcha-green mb-2"
+          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
         >
           Dietary Restrictions or Allergies
         </label>
@@ -149,7 +149,7 @@
       <div>
         <label
           for="songs"
-          class="block text-sm font-medium text-wedding-matcha-green mb-2"
+          class="block text-sm font-medium text-wedding-dark-matcha-green mb-2"
         >
           Song Requests
         </label>
@@ -173,7 +173,7 @@
       <button
         type="submit"
         disabled={isSubmitting}
-        class="w-full bg-wedding-pink-clouds text-white py-3 rounded-lg font-semibold hover:bg-wedding-pink-clouds transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        class="w-full bg-wedding-raspberry text-white py-3 rounded-lg font-semibold hover:bg-wedding-raspberry/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
       >
         {isSubmitting ? 'Submitting...' : 'Submit RSVP'}
       </button>

@@ -11,9 +11,20 @@
 
   let activeSection = 'home';
   let isScrolling = false;
+  let clickedSection: string | null = null;
 
-  function scrollToSection(sectionId: string) {
+  function scrollToSection(sectionId: string, event?: MouseEvent) {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    // Remove focus from button to prevent hover state from sticking
+    if (event?.currentTarget) {
+      (event.currentTarget as HTMLElement).blur();
+    }
+
+    // Immediately set the clicked section as active
+    clickedSection = sectionId;
+    activeSection = sectionId;
+
     isScrolling = true;
     const element = document.getElementById(sectionId) as HTMLElement;
     if (element) {
@@ -28,12 +39,17 @@
       // Reset scrolling flag after animation
       setTimeout(() => {
         isScrolling = false;
+        // Clear clicked section after scroll completes so scroll position takes over
+        clickedSection = null;
       }, 1000);
     }
   }
 
   function updateActiveSection() {
     if (isScrolling || typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    // Don't update if we just clicked a section (let the click handle it)
+    if (clickedSection !== null) return;
 
     const scrollY = (window.pageYOffset || window.scrollY) + 100;
 
@@ -63,12 +79,12 @@
 </script>
 
 <div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden md:block">
-  <nav class="bg-white/90 backdrop-blur-sm rounded-full shadow-lg border-2 border-wedding-matcha-green/20 p-2">
+  <nav class="bg-wedding-oatmilk/90 backdrop-blur-sm rounded-full shadow-lg border-2 border-wedding-dark-matcha-green/20 p-2">
     <div class="flex flex-col gap-2">
       {#each sections as section, index (section.id)}
         <button
-          on:click={() => scrollToSection(section.id)}
-          class="relative group flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:scale-110 {activeSection === section.id ? 'bg-wedding-matcha-green text-white shadow-md' : 'text-gray-600 hover:bg-wedding-pink-clouds/20 hover:text-wedding-pink-clouds'}"
+          on:click={(e) => scrollToSection(section.id, e)}
+          class="relative group flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-0 {activeSection === section.id ? 'bg-wedding-dark-matcha-green text-white shadow-md' : 'text-gray-600 hover:bg-wedding-raspberry/20 hover:text-wedding-raspberry active:bg-wedding-raspberry/20'}"
           aria-label={section.name}
           title={section.name}
         >
@@ -76,19 +92,19 @@
 
           <!-- Active indicator line -->
           {#if activeSection === section.id}
-            <div class="absolute -left-2 w-1 h-8 bg-wedding-matcha-green rounded-full"></div>
+            <div class="absolute -left-2 w-1 h-8 bg-wedding-dark-matcha-green rounded-full"></div>
           {/if}
 
           <!-- Tooltip -->
-          <div class="absolute right-full mr-3 px-3 py-1 bg-wedding-matcha-green text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+          <div class="absolute right-full mr-3 px-3 py-1 bg-wedding-dark-matcha-green text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
             {section.name}
-            <div class="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-wedding-matcha-green"></div>
+            <div class="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-wedding-dark-matcha-green"></div>
           </div>
         </button>
 
         <!-- Connector line between steps -->
         {#if index < sections.length - 1}
-          <div class="w-0.5 h-4 mx-auto {activeSection === section.id || activeSection === sections[index + 1].id ? 'bg-wedding-matcha-green/50' : 'bg-gray-300'} transition-colors"></div>
+          <div class="w-0.5 h-4 mx-auto {activeSection === section.id || activeSection === sections[index + 1].id ? 'bg-wedding-dark-matcha-green/50' : 'bg-gray-300'} transition-colors"></div>
         {/if}
       {/each}
     </div>
@@ -97,17 +113,17 @@
 
 <!-- Mobile version - bottom fixed -->
 <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden">
-  <nav class="bg-white/95 backdrop-blur-sm rounded-full shadow-lg border-2 border-wedding-matcha-green/20 px-4 py-2">
+  <nav class="bg-wedding-oatmilk/95 backdrop-blur-sm rounded-full shadow-lg border-2 border-wedding-dark-matcha-green/20 px-4 py-2">
     <div class="flex gap-2">
       {#each sections as section (section.id)}
         <button
-          on:click={() => scrollToSection(section.id)}
-          class="flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all duration-300 {activeSection === section.id ? 'bg-wedding-matcha-green text-white' : 'text-gray-600 hover:bg-wedding-pink-clouds/20'}"
+          on:click={(e) => scrollToSection(section.id, e)}
+          class="flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all duration-300 focus:outline-none focus:ring-0 {activeSection === section.id ? 'bg-wedding-dark-matcha-green text-white' : 'text-gray-600 hover:bg-wedding-raspberry/20 active:bg-wedding-raspberry/20'}"
           aria-label={section.name}
         >
           <span class="text-lg">{section.icon}</span>
           {#if activeSection === section.id}
-            <div class="absolute -bottom-1 w-8 h-1 bg-wedding-matcha-green rounded-full"></div>
+            <div class="absolute -bottom-1 w-8 h-1 bg-wedding-dark-matcha-green rounded-full"></div>
           {/if}
         </button>
       {/each}

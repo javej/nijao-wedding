@@ -13,16 +13,18 @@ export default {
       colors: {
         wedding: {
           'pink-clouds': '#E789C6',
+          'raspberry': '#8B3A3A',  // Dark burgundy/red
           strawberry: '#DD716B',
           'matcha-green': '#9FC76B',
+          'dark-matcha-green': '#556B2F',  // Dark olive green
           oatmilk: '#EEF2DD',
           'light-espresso': '#A07D68',
           // Semantic color mappings for easy use
-          primary: '#E789C6',      // Pink Clouds - main brand color
-          secondary: '#9FC768',     // Matcha Green - accent color
+          primary: '#8B3A3A',      // Raspberry - main brand color
+          secondary: '#556B2F',     // Dark Matcha Green - accent color
           accent: '#EEF2DD',        // Oatmilk - light background
           dark: '#A07D68',         // Light Espresso - text/dark elements
-          highlight: '#DD0716',    // Strawberry - call-to-action/highlights
+          highlight: '#DD716B',    // Strawberry - call-to-action/highlights
         },
       },
       animation: {
