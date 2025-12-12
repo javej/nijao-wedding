@@ -12,6 +12,7 @@
   let activeSection = 'home';
   let isScrolling = false;
   let clickedSection: string | null = null;
+  let isVisible = false;
 
   function scrollToSection(sectionId: string, event?: MouseEvent) {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
@@ -70,6 +71,26 @@
     if (typeof window === 'undefined') return;
     window.addEventListener('scroll', updateActiveSection);
     updateActiveSection(); // Initial check
+
+    // Listen for invitation state changes
+    window.addEventListener('invitation-opened', () => {
+      isVisible = true;
+    });
+    window.addEventListener('invitation-closed', () => {
+      isVisible = false;
+    });
+
+    // Check initial state from localStorage
+    const wasOpened = localStorage.getItem('wedding-invitation-opened') === 'true';
+    const cover = document.getElementById('invitation-cover');
+
+    if (wasOpened || (cover && cover.classList.contains('hidden'))) {
+      // Invitation was previously opened or is currently hidden
+      isVisible = true;
+    } else {
+      // Invitation cover is showing
+      isVisible = false;
+    }
   });
 
   onDestroy(() => {
@@ -78,7 +99,7 @@
   });
 </script>
 
-<div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden md:block">
+<div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden md:block transition-opacity duration-500 {isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}">
   <nav class="bg-wedding-oatmilk/90 backdrop-blur-sm rounded-full shadow-lg border-2 border-wedding-dark-matcha-green/20 p-2">
     <div class="flex flex-col gap-2">
       {#each sections as section, index (section.id)}
@@ -112,7 +133,7 @@
 </div>
 
 <!-- Mobile version - bottom fixed -->
-<div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden">
+<div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden transition-opacity duration-500 {isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}">
   <nav class="bg-wedding-oatmilk/95 backdrop-blur-sm rounded-full shadow-lg border-2 border-wedding-dark-matcha-green/20 px-4 py-2">
     <div class="flex gap-2">
       {#each sections as section (section.id)}
