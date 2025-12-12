@@ -136,18 +136,18 @@
 </div>
 
 <!-- Mobile version - bottom fixed -->
-<div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 md:hidden transition-opacity duration-500 {isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}">
-  <nav class="bg-wedding-oatmilk/95 backdrop-blur-sm rounded-full shadow-lg border-2 border-wedding-dark-matcha-green/20 px-4 py-2">
-    <div class="flex gap-2">
+<div class="fixed bottom-0 left-0 right-0 z-50 md:hidden transition-opacity duration-500 {isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'} pb-safe">
+  <nav class="bg-wedding-oatmilk/95 backdrop-blur-sm shadow-lg border-t-2 border-wedding-dark-matcha-green/20 px-2 sm:px-4 py-2.5 sm:py-3">
+    <div class="flex gap-1 sm:gap-1.5 md:gap-2 justify-center items-center max-w-full overflow-x-auto scrollbar-hide">
       {#each sections as section (section.id)}
         <button
           on:click={(e) => scrollToSection(section.id, e)}
-          class="flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all duration-300 focus:outline-none focus:ring-0 {activeSection === section.id ? 'bg-wedding-dark-matcha-green text-white' : 'text-gray-600 hover:bg-wedding-raspberry/20 active:bg-wedding-raspberry/20'}"
+          class="flex flex-col items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-wedding-dark-matcha-green focus:ring-offset-2 flex-shrink-0 touch-manipulation {activeSection === section.id ? 'bg-wedding-dark-matcha-green text-white scale-110' : 'text-gray-600 hover:bg-wedding-raspberry/20 active:bg-wedding-raspberry/20 active:scale-95'}"
           aria-label={section.name}
         >
-          <span class="text-lg">{section.icon}</span>
+          <span class="text-base sm:text-lg leading-none">{section.icon}</span>
           {#if activeSection === section.id}
-            <div class="absolute -bottom-1 w-8 h-1 bg-wedding-dark-matcha-green rounded-full"></div>
+            <div class="absolute -bottom-0.5 sm:-bottom-1 w-6 sm:w-8 h-0.5 sm:h-1 bg-wedding-dark-matcha-green rounded-full"></div>
           {/if}
         </button>
       {/each}
@@ -158,6 +158,21 @@
 <style>
   nav button {
     position: relative;
+  }
+
+  /* Hide scrollbar for mobile nav */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Safe area padding for devices with notches */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0.5rem);
   }
 </style>
 
