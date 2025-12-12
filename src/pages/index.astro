@@ -66,11 +66,11 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
       </div>
 
       <!-- Invitation Content (Hidden initially) -->
-      <div id="invitation-content" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4">
+      <div id="invitation-content" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-8 md:pt-12">
         <!-- Close Button - Positioned outside clipped container -->
         <button
           id="close-invitation-btn"
-          class="absolute top-2 right-2 z-50 w-10 h-10 rounded-full bg-wedding-dark-matcha-green/20 hover:bg-wedding-dark-matcha-green/40 text-wedding-dark-matcha-green flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md"
+          class="absolute top-2 right-2 md:top-4 md:right-4 z-50 w-10 h-10 rounded-full bg-wedding-dark-matcha-green/20 hover:bg-wedding-dark-matcha-green/40 text-wedding-dark-matcha-green flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md"
           aria-label="Close invitation"
           title="Close invitation"
         >
@@ -79,7 +79,7 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
           </svg>
         </button>
 
-        <div class="bg-white rounded-3xl shadow-2xl border-4 border-wedding-dark-matcha-green/30 overflow-visible relative" style="clip-path: polygon(0 6%, 50% 0%, 100% 6%, 100% 100%, 0 100%);">
+        <div class="bg-white rounded-3xl shadow-2xl border-4 border-wedding-dark-matcha-green/30 overflow-visible relative" style="clip-path: polygon(0 4%, 50% 0%, 100% 4%, 100% 100%, 0 100%);">
 
           <!-- Top Page - Hero Content -->
           <div class="p-8 md:p-16 text-center border-b-4 border-dashed border-wedding-dark-matcha-green/20 bg-gradient-to-b from-wedding-oatmilk to-white">
@@ -117,14 +117,27 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
                 <div class="text-base md:text-lg text-gray-700 space-y-2">
                   <p>
                     <span class="font-semibold text-wedding-raspberry">Ceremony:</span><br />
-                    St. Therese of the Child Jesus<br />
-                    and of the Holy Face Parish<br />
-                    <span class="text-sm">Santo Tomas-Lipa Road, Barangay Talisay,<br />Lipa City, Batangas</span>
+                    St. Therese of the Child Jesus and of the Holy Face Parish Lipa<br />
+                    <a
+                      href="https://www.waze.com/live-map/directions/ph/calabarzon/lipa-city/st.-therese-of-the-child-jesus-and-the-holy-face-parish-church?to=place.ChIJwVyKzKJrvTMRXQTkhMSO6zE"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-sm text-wedding-dark-matcha-green hover:text-wedding-raspberry underline hover:no-underline transition-colors"
+                    >
+                      Waze directions
+                    </a>
                   </p>
                   <p class="mt-3">
                     <span class="font-semibold text-wedding-raspberry">Reception:</span><br />
                     10 22 Lipa<br />
-                    <span class="text-sm">Alaminos Rd, Brgy,<br />Lipa City, Batangas</span>
+                    <a
+                      href="https://www.waze.com/live-map/directions/10-22-lipa-lipa-city-alaminos-rd?to=place.w.79429772.794363254.37138665"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-sm text-wedding-dark-matcha-green hover:text-wedding-raspberry underline hover:no-underline transition-colors"
+                    >
+                      Waze directions
+                    </a>
                   </p>
                 </div>
               </div>
