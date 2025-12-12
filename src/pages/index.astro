@@ -4,6 +4,12 @@ import StepperNavigation from '../components/StepperNavigation.svelte';
 import Gallery from '../components/Gallery/Gallery.svelte';
 import RSVPForm from '../components/RSVP/RSVPForm.svelte';
 import Guestbook from '../components/Guestbook/Guestbook.svelte';
+import InvitationCover from '../components/InvitationCover.astro';
+import InvitationContent from '../components/InvitationContent.astro';
+import TimelineSection from '../components/TimelineSection.astro';
+import OurStorySection from '../components/OurStorySection.astro';
+import BridalPartySection from '../components/BridalPartySection.astro';
+import FAQSection from '../components/FAQSection.svelte';
 ---
 
 <BaseLayout title="Nijao Wedding - Join Us for Our Special Day">
@@ -19,148 +25,14 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
         <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-wedding-raspberry/10 rounded-full blur-lg animate-float animate-delay-600"></div>
       </div>
 
-      <!-- Invitation Cover - Envelope Style -->
-      <div id="invitation-cover" class="relative z-20 w-full max-w-xl mx-auto px-4 transition-all duration-1000">
-        <!-- Invitation greeting at the top -->
-        <div class="text-center mb-6">
-          <p class="text-2xl md:text-3xl lg:text-4xl font-handwriting text-wedding-raspberry italic mb-8">
-            You're cordially invited
-          </p>
-        </div>
+      <InvitationCover />
 
-        <!-- Names -->
-        <div class="text-center mb-8">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-brush text-wedding-dark-matcha-green mb-2 drop-shadow-md">
-            Jave & Nianne
-          </h1>
-          <time datetime="2027-01-08" class="text-xl md:text-2xl font-handwriting font-semibold text-wedding-raspberry">
-            January 8, 2027 (Friday)
-          </time>
-        </div>
-
-        <!-- Envelope Container -->
-        <div class="relative transform transition-transform duration-300" id="envelope-container">
-          <!-- Envelope Body -->
-          <div class="bg-wedding-dark-matcha-green rounded-lg shadow-2xl relative overflow-hidden" style="aspect-ratio: 4/3; max-width: 400px; margin: 0 auto;">
-            <!-- Envelope Flap (Top - will flip) -->
-            <div id="envelope-flap" class="absolute top-0 left-0 right-0 bg-wedding-dark-matcha-green origin-top transition-transform duration-1000 ease-in-out" style="height: 40%; clip-path: polygon(0 0, 50% 100%, 100% 0); z-index: 2;">
-              <!-- Wax Seal - Clickable Circle -->
-              <button
-                id="open-invitation-btn"
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-wedding-raspberry via-wedding-raspberry/90 to-wedding-raspberry rounded-full flex items-center justify-center shadow-2xl border-4 border-wedding-raspberry/50 hover:scale-110 transition-transform duration-300 cursor-pointer z-10"
-                style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 2px 10px rgba(255, 255, 255, 0.2);"
-              >
-                <div class="text-3xl md:text-4xl font-brush text-white" style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">
-                  J&N
-                </div>
-                <!-- Seal texture effect -->
-                <div class="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-wedding-raspberry/30 to-wedding-raspberry/50"></div>
-              </button>
-            </div>
-
-            <!-- Envelope Back (visible when flap is open) -->
-            <div class="absolute inset-0 bg-wedding-dark-matcha-green/95 rounded-lg"></div>
-          </div>
-
-          <!-- "Click to Open" hint text -->
-          <p class="text-center mt-6 text-wedding-dark-matcha-green font-handwriting text-lg md:text-xl italic">
-            Click to View Invitation...
-          </p>
-        </div>
-      </div>
-
-      <!-- Invitation Content (Hidden initially) -->
-      <div id="invitation-content" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-8 md:pt-12">
-        <!-- Close Button - Positioned outside clipped container -->
-        <button
-          id="close-invitation-btn"
-          class="absolute top-2 right-2 md:top-4 md:right-4 z-50 w-10 h-10 rounded-full bg-wedding-dark-matcha-green/20 hover:bg-wedding-dark-matcha-green/40 text-wedding-dark-matcha-green flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md"
-          aria-label="Close invitation"
-          title="Close invitation"
-        >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        <div class="bg-white rounded-3xl shadow-2xl border-4 border-wedding-dark-matcha-green/30 overflow-visible relative" style="clip-path: polygon(0 4%, 50% 0%, 100% 4%, 100% 100%, 0 100%);">
-
-          <!-- Top Page - Hero Content -->
-          <div class="p-8 md:p-16 text-center border-b-4 border-dashed border-wedding-dark-matcha-green/20 bg-gradient-to-b from-wedding-oatmilk to-white">
-            <h2 class="text-5xl sm:text-6xl lg:text-7xl font-brush text-wedding-dark-matcha-green mb-4 md:mb-6 drop-shadow-lg">
-              Jave & Nianne
-            </h2>
-            <p class="text-2xl sm:text-3xl md:text-4xl font-handwriting text-wedding-raspberry mb-6 md:mb-8 drop-shadow-md">
-              We're Getting Married!
-            </p>
-            <p class="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto">
-              Your presence would make our day complete. We're so grateful to have you in our lives and can't wait to celebrate this beautiful moment together.
-            </p>
-          </div>
-
-          <!-- Bottom Page - Quick Info -->
-          <div class="p-8 md:p-16 bg-white">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
-              <div class="bg-wedding-oatmilk p-6 md:p-8 rounded-xl shadow-lg border-2 border-wedding-dark-matcha-green/20 card-hover">
-                <div class="mb-4">
-                  <div class="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-wedding-raspberry/20 to-wedding-dark-matcha-green/20 rounded-full flex items-center justify-center border-2 border-wedding-dark-matcha-green/30">
-                    <span class="text-3xl">📅</span>
-                  </div>
-                </div>
-                <h3 class="text-2xl md:text-3xl font-handwriting font-bold text-wedding-dark-matcha-green mb-3">Date</h3>
-                <p class="text-lg text-gray-700">January 8, 2027<br />Friday</p>
-              </div>
-              <div class="bg-wedding-oatmilk p-6 md:p-8 rounded-xl shadow-lg border-2 border-wedding-raspberry/20 card-hover">
-                <div class="mb-4">
-                  <div class="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-wedding-raspberry/20 to-wedding-dark-matcha-green/20 rounded-full flex items-center justify-center border-2 border-wedding-raspberry/30">
-                    <span class="text-3xl">📍</span>
-                  </div>
-                </div>
-                <h3 class="text-2xl md:text-3xl font-handwriting font-bold text-wedding-dark-matcha-green mb-3">Location</h3>
-                <div class="text-base md:text-lg text-gray-700 space-y-2">
-                  <p>
-                    <span class="font-semibold text-wedding-raspberry">Ceremony (2PM):</span><br />
-                    St. Therese of the Child Jesus and of the Holy Face Parish Lipa<br />
-                    <a
-                      href="https://www.waze.com/live-map/directions/ph/calabarzon/lipa-city/st.-therese-of-the-child-jesus-and-the-holy-face-parish-church?to=place.ChIJwVyKzKJrvTMRXQTkhMSO6zE"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-sm text-wedding-dark-matcha-green hover:text-wedding-raspberry underline hover:no-underline transition-colors"
-                    >
-                      Waze navigation
-                    </a>
-                  </p>
-                  <p class="mt-3">
-                    <span class="font-semibold text-wedding-raspberry">Reception (4PM Cocktails):</span><br />
-                    10 22 Lipa<br />
-                    <a
-                      href="https://www.waze.com/live-map/directions/10-22-lipa-lipa-city-alaminos-rd?to=place.w.79429772.794363254.37138665"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-sm text-wedding-dark-matcha-green hover:text-wedding-raspberry underline hover:no-underline transition-colors"
-                    >
-                      Waze navigation
-                    </a>
-                  </p>
-                </div>
-              </div>
-              <div class="bg-wedding-oatmilk p-6 md:p-8 rounded-xl shadow-lg border-2 border-wedding-dark-matcha-green/20 card-hover">
-                <div class="mb-4">
-                  <div class="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-wedding-raspberry/20 to-wedding-dark-matcha-green/20 rounded-full flex items-center justify-center border-2 border-wedding-dark-matcha-green/30">
-                    <span class="text-3xl">👗</span>
-                  </div>
-                </div>
-                <h3 class="text-2xl md:text-3xl font-handwriting font-bold text-wedding-dark-matcha-green mb-3">Dress Code</h3>
-                <p class="text-lg text-gray-700">Formal Attire (Suits, Gowns, or Cocktail Dresses)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <InvitationContent />
     </section>
 
     <script>
       if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+        // Invitation open/close logic
         const cover = document.getElementById('invitation-cover');
         const content = document.getElementById('invitation-content');
         const openBtn = document.getElementById('open-invitation-btn');
@@ -172,27 +44,20 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
         function checkInvitationState() {
           const wasOpened = localStorage.getItem(STORAGE_KEY) === 'true';
           if (wasOpened && cover && content) {
-            // User has opened it before, show content immediately
             cover.classList.add('hidden');
             content.classList.remove('hidden');
             content.style.opacity = '1';
             content.style.transform = 'scale(1) translateY(0)';
             isInvitationOpen = true;
-
-            // Enable scrolling
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
-
-            // Show navigation
             window.dispatchEvent(new CustomEvent('invitation-opened'));
           } else {
-            // First time visitor, show cover and prevent scrolling
             document.body.style.overflow = 'hidden';
             document.documentElement.style.overflow = 'hidden';
           }
         }
 
-        // Prevent scrolling when invitation is closed
         function preventScroll(e: Event) {
           if (!isInvitationOpen) {
             e.preventDefault();
@@ -201,7 +66,6 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
           }
         }
 
-        // Prevent wheel scrolling
         function preventWheel(e: WheelEvent) {
           if (!isInvitationOpen) {
             e.preventDefault();
@@ -209,7 +73,6 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
           }
         }
 
-        // Prevent keyboard scrolling
         function preventKeyboardScroll(e: KeyboardEvent) {
           if (!isInvitationOpen) {
             const scrollKeys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '];
@@ -220,7 +83,6 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
           }
         }
 
-        // Prevent touch scrolling on mobile
         function preventTouchMove(e: TouchEvent) {
           if (!isInvitationOpen) {
             e.preventDefault();
@@ -230,42 +92,27 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
 
         function openInvitation() {
           if (!cover || !content) return;
-
           isInvitationOpen = true;
-
-          // Save to localStorage
           localStorage.setItem(STORAGE_KEY, 'true');
-
-          // Get envelope flap element
           const envelopeFlap = document.getElementById('envelope-flap');
           const envelopeContainer = document.getElementById('envelope-container');
 
           if (envelopeFlap && envelopeContainer) {
-            // Animate the triangular flap flip
             envelopeFlap.style.transform = 'rotateX(-180deg)';
             envelopeFlap.style.transition = 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)';
-
-            // Fade out the entire cover after flap animation
             setTimeout(() => {
               cover.style.opacity = '0';
               cover.style.transform = 'scale(0.95)';
               cover.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
               cover.style.pointerEvents = 'none';
-
               setTimeout(() => {
                 cover.classList.add('hidden');
                 content.classList.remove('hidden');
                 content.style.opacity = '0';
                 content.style.transform = 'scale(0.9) translateY(30px)';
-
-                // Show navigation
                 window.dispatchEvent(new CustomEvent('invitation-opened'));
-
-                // Remove scroll prevention
                 document.body.style.overflow = '';
                 document.documentElement.style.overflow = '';
-
-                // Trigger content animation
                 requestAnimationFrame(() => {
                   content.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
                   content.style.opacity = '1';
@@ -274,21 +121,17 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
               }, 500);
             }, 1000);
           } else {
-            // Fallback if envelope elements not found
             cover.style.opacity = '0';
             cover.style.transform = 'scale(0.8) translateY(-50px)';
             cover.style.pointerEvents = 'none';
-
             setTimeout(() => {
               cover.classList.add('hidden');
               content.classList.remove('hidden');
               content.style.opacity = '0';
               content.style.transform = 'scale(0.9) translateY(30px)';
-
               window.dispatchEvent(new CustomEvent('invitation-opened'));
               document.body.style.overflow = '';
               document.documentElement.style.overflow = '';
-
               requestAnimationFrame(() => {
                 content.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
                 content.style.opacity = '1';
@@ -300,36 +143,24 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
 
         function closeInvitation() {
           if (!cover || !content) return;
-
           isInvitationOpen = false;
-
-          // Re-enable scroll prevention
           document.body.style.overflow = 'hidden';
           document.documentElement.style.overflow = 'hidden';
-
           content.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
           content.style.opacity = '0';
           content.style.transform = 'scale(0.9) translateY(30px)';
-
-          // Hide navigation
           window.dispatchEvent(new CustomEvent('invitation-closed'));
-
           setTimeout(() => {
             content.classList.add('hidden');
             cover.classList.remove('hidden');
-
-            // Reset envelope flap to original position
             const envelopeFlap = document.getElementById('envelope-flap');
             if (envelopeFlap) {
               envelopeFlap.style.transform = 'rotateX(0deg)';
               envelopeFlap.style.transition = 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)';
             }
-
             cover.style.opacity = '0';
             cover.style.transform = 'scale(0.95)';
             cover.style.pointerEvents = 'auto';
-
-            // Trigger animation
             requestAnimationFrame(() => {
               cover.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
               cover.style.opacity = '1';
@@ -338,26 +169,15 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
           }, 300);
         }
 
-        // Initialize on page load
         checkInvitationState();
-
-        // Add event listeners for scroll prevention (only if invitation not opened)
         if (!isInvitationOpen) {
           window.addEventListener('wheel', preventWheel, { passive: false });
           window.addEventListener('touchmove', preventTouchMove, { passive: false });
           window.addEventListener('keydown', preventKeyboardScroll);
           document.addEventListener('scroll', preventScroll, true);
         }
-
-        if (openBtn) {
-          openBtn.addEventListener('click', openInvitation);
-        }
-
-        if (closeBtn) {
-          closeBtn.addEventListener('click', closeInvitation);
-        }
-
-        // Cleanup on page unload
+        if (openBtn) openBtn.addEventListener('click', openInvitation);
+        if (closeBtn) closeBtn.addEventListener('click', closeInvitation);
         window.addEventListener('beforeunload', () => {
           window.removeEventListener('wheel', preventWheel);
           window.removeEventListener('touchmove', preventTouchMove);
@@ -367,92 +187,11 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
       }
     </script>
 
-    <!-- Timeline Section -->
-    <section id="timeline" class="pt-12 pb-20 bg-wedding-dark-matcha-green/5">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl sm:text-5xl font-brush text-center text-wedding-dark-matcha-green mb-12">
-          Our Wedding Day Timeline
-        </h2>
+    <TimelineSection />
 
-        <div class="space-y-8">
-          <!-- Timeline Item 1 - Dark Matcha Green -->
-          <div class="relative pl-8 border-l-4 border-wedding-dark-matcha-green">
-            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-dark-matcha-green rounded-full"></div>
-            <div class="bg-wedding-oatmilk p-6 rounded-lg shadow-md">
-              <h3 class="text-2xl font-handwriting font-bold text-wedding-dark-matcha-green mb-2">
-                2:00 PM - Ceremony
-              </h3>
-              <p class="text-gray-700">
-                Join us for our wedding ceremony. Please arrive 15 minutes early.
-              </p>
-            </div>
-          </div>
+    <OurStorySection />
 
-          <!-- Timeline Item 2 - Raspberry -->
-          <div class="relative pl-8 border-l-4 border-wedding-raspberry">
-            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-raspberry rounded-full"></div>
-            <div class="bg-wedding-oatmilk p-6 rounded-lg shadow-md">
-              <h3 class="text-2xl font-handwriting font-bold text-wedding-raspberry mb-2">
-                4:00 PM - Cocktail Hour
-              </h3>
-              <p class="text-gray-700">
-                Cocktail Hour: Drinks and Hors d'oeuvres
-              </p>
-            </div>
-          </div>
-
-          <!-- Timeline Item 3 - Dark Matcha Green -->
-          <div class="relative pl-8 border-l-4 border-wedding-dark-matcha-green">
-            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-dark-matcha-green rounded-full"></div>
-            <div class="bg-wedding-oatmilk p-6 rounded-lg shadow-md">
-              <h3 class="text-2xl font-handwriting font-bold text-wedding-dark-matcha-green mb-2">
-                5:00 PM - Reception
-              </h3>
-              <p class="text-gray-700">
-                Dinner, dancing, and celebration!
-              </p>
-            </div>
-          </div>
-
-          <!-- Timeline Item 4 - Raspberry -->
-          <div class="relative pl-8 border-l-4 border-wedding-raspberry">
-            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-raspberry rounded-full"></div>
-            <div class="bg-wedding-oatmilk p-6 rounded-lg shadow-md">
-              <h3 class="text-2xl font-handwriting font-bold text-wedding-raspberry mb-2">
-                8:00 PM - After Party
-              </h3>
-              <p class="text-gray-700">
-                Let's dance the night away! The party continues with music and celebration.
-              </p>
-            </div>
-          </div>
-
-          <!-- Timeline Item 5 - Dark Matcha Green -->
-          <div class="relative pl-8 border-l-4 border-wedding-dark-matcha-green">
-            <div class="absolute -left-3 top-0 w-6 h-6 bg-wedding-dark-matcha-green rounded-full"></div>
-            <div class="bg-wedding-oatmilk p-6 rounded-lg shadow-md">
-              <h3 class="text-2xl font-handwriting font-bold text-wedding-dark-matcha-green mb-2">
-                9:00 PM - Dismissal
-              </h3>
-              <p class="text-gray-700">
-                Thank you for celebrating with us! Safe travels home.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="pt-12 pb-20 bg-gradient-to-b from-wedding-raspberry/10 via-wedding-dark-matcha-green/10 to-transparent">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl sm:text-5xl font-brush text-center text-wedding-dark-matcha-green mb-12">
-          Our Photo Gallery
-        </h2>
-
-        <Gallery client:load />
-      </div>
-    </section>
+    <BridalPartySection />
 
     <!-- RSVP Section -->
     <section id="rsvp" class="pt-12 pb-20 bg-wedding-dark-matcha-green/5">
@@ -470,6 +209,20 @@ import Guestbook from '../components/Guestbook/Guestbook.svelte';
         <RSVPForm client:load />
       </div>
     </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="pt-12 pb-20 bg-gradient-to-b from-wedding-raspberry/10 via-wedding-dark-matcha-green/10 to-transparent">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl sm:text-5xl font-brush text-center text-wedding-dark-matcha-green mb-12">
+          Our Photo Gallery
+        </h2>
+
+        <Gallery client:load />
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <FAQSection client:load />
 
     <!-- Guestbook Section -->
     <section id="guestbook" class="pt-12 pb-20 bg-gradient-to-b from-wedding-raspberry/10 via-wedding-dark-matcha-green/10 to-transparent">

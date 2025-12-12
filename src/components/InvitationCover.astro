@@ -1,0 +1,52 @@
+---
+---
+
+<div id="invitation-cover" class="relative z-20 w-full max-w-xl mx-auto px-4 transition-all duration-1000">
+  <!-- Invitation greeting at the top -->
+  <div class="text-center mb-6">
+    <p class="text-2xl md:text-3xl lg:text-4xl font-handwriting text-wedding-raspberry italic mb-8">
+      You're cordially invited
+    </p>
+  </div>
+
+  <!-- Names -->
+  <div class="text-center mb-8">
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-brush text-wedding-dark-matcha-green mb-2 drop-shadow-md">
+      Jave & Nianne
+    </h1>
+    <time datetime="2027-01-08" class="text-xl md:text-2xl font-handwriting font-semibold text-wedding-raspberry">
+      January 8, 2027 (Friday)
+    </time>
+  </div>
+
+  <!-- Envelope Container -->
+  <div class="relative transform transition-transform duration-300" id="envelope-container">
+    <!-- Envelope Body -->
+    <div class="bg-wedding-dark-matcha-green rounded-lg shadow-2xl relative overflow-hidden" style="aspect-ratio: 4/3; max-width: 400px; margin: 0 auto;">
+      <!-- Envelope Flap (Top - will flip) -->
+      <div id="envelope-flap" class="absolute top-0 left-0 right-0 bg-wedding-dark-matcha-green origin-top transition-transform duration-1000 ease-in-out" style="height: 40%; clip-path: polygon(0 0, 50% 100%, 100% 0); z-index: 2;">
+        <!-- Wax Seal - Clickable Circle -->
+        <button
+          id="open-invitation-btn"
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-wedding-raspberry via-wedding-raspberry/90 to-wedding-raspberry rounded-full flex items-center justify-center shadow-2xl border-4 border-wedding-raspberry/50 hover:scale-110 transition-transform duration-300 cursor-pointer z-10"
+          style="box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 2px 10px rgba(255, 255, 255, 0.2);"
+        >
+          <div class="text-3xl md:text-4xl font-brush text-white" style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">
+            J&N
+          </div>
+          <!-- Seal texture effect -->
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-wedding-raspberry/30 to-wedding-raspberry/50"></div>
+        </button>
+      </div>
+
+      <!-- Envelope Back (visible when flap is open) -->
+      <div class="absolute inset-0 bg-wedding-dark-matcha-green/95 rounded-lg"></div>
+    </div>
+
+    <!-- "Click to Open" hint text -->
+    <p class="text-center mt-6 text-wedding-dark-matcha-green font-handwriting text-lg md:text-xl italic">
+      Click to View Invitation...
+    </p>
+  </div>
+</div>
+

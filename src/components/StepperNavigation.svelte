@@ -4,8 +4,11 @@
   const sections = [
     { id: 'home', name: 'Details', icon: '📋' },
     { id: 'timeline', name: 'Timeline', icon: '⏰' },
-    { id: 'gallery', name: 'Gallery', icon: '📸' },
+    { id: 'our-story', name: 'Our Story', icon: '💕' },
+    { id: 'bridal-party', name: 'Bridal Party', icon: '👥' },
     { id: 'rsvp', name: 'RSVP', icon: '✉️' },
+    { id: 'gallery', name: 'Gallery', icon: '📸' },
+    { id: 'faq', name: 'FAQs', icon: '❓' },
     { id: 'guestbook', name: 'Guestbook', icon: '💬' },
   ];
 
